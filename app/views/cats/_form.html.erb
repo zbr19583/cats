@@ -1,0 +1,54 @@
+<% if @cat.persisted? %>
+<% value = 'PATCH' %>
+<% else %>
+<% value = 'POST' %>
+<% end %>
+
+<form action="<%=cat_url(cat)%>" method="post">
+  <input type="hidden" name="_method" value="<%= value %>">
+  
+  <label for="cat_name"> Name: </label>
+  <input type="text" name="cat[name]" id="cat_name" value="<%= cat.name %>">
+  <br>
+  <label for="cat_age"> Age: </label>
+  <input type="text" name="cat[age]" id="cat_age" value="<%= cat.age %>">
+  <br>
+  <br>
+  <b>Sex</b>
+  <br>
+  
+  <% female = (cat.sex == "F" ? true : false) %>
+  <% male = (female == true ? false : true) %>
+  <input type="radio" checked = "<%=female%>" name="cat[sex]" id="cat_sex_female" value="F">
+  <label for="cat_sex_female">Female</label>
+  <br>
+  <input type="radio" checked = "<%= male %>" name="cat[sex]" id="cat_sex_male" value="M">
+  <label for="cat_sex_male">Male</label>
+  <br>
+  <br>
+  <label for="cat_coat_color">Coat Color</label>
+  <br>
+  <select name="cat[color]" id="cat_coat_color">
+    <option> </option>
+    
+    
+    
+    <option value="black"> Black</option>
+    <option value="white"> White</option>
+    <option value="brown"> Brown</option>
+    <option value="grey"> Grey</option>
+  </select>
+  <br>
+  <br>
+  <b>Birth Date</b>
+  <br>
+  <input name="cat[birth_date]" id="cat_birth_date" type="date" selected="<%= cat.birth_date %>"></input>
+  <br>
+  <br>
+  <b>Cat's Description</b>
+  <br>
+  <textarea name="cat[description]" id="cat_description"><%= cat.description %></textarea>
+  <br>
+  <input type="submit" value="MEOWWW!">
+</form>
+
