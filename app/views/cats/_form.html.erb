@@ -1,10 +1,12 @@
 <% if @cat.persisted? %>
-<% value = 'PATCH' %>
+<%	value = :patch %>
+<%	url_action = cat_url(@cat)  %>
 <% else %>
-<% value = 'POST' %>
+<%	value = :post %>
+<%	url_action = cats_url%>
 <% end %>
 
-<form action="<%=cat_url(cat)%>" method="post">
+<form action="<%=url_action%>" method="post">
   <input type="hidden" name="_method" value="<%= value %>">
   
   <label for="cat_name"> Name: </label>
